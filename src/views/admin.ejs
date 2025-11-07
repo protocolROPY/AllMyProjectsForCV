@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Admin - Add Project</title>
+    <link rel="stylesheet" href="/public/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Add New Project</h1>
+      <a class="btn" href="/">Back to Projects</a>
+    </header>
+
+    <main>
+      <% if (error) { %>
+        <div class="error"><%= error %></div>
+      <% } %>
+
+      <form action="/admin/projects" method="POST" class="form">
+        <label>Title (required)<input type="text" name="title" value="<%= values.title || '' %>" required></label>
+        <label>Description<textarea name="description"><%= values.description || '' %></textarea></label>
+        <label>Tech (e.g. Node.js, React)<input type="text" name="tech" value="<%= values.tech || '' %>"></label>
+        <label>Link (optional)<input type="url" name="link" value="<%= values.link || '' %>"></label>
+        <button type="submit">Create Project</button>
+      </form>
+    </main>
+  </body>
+</html>

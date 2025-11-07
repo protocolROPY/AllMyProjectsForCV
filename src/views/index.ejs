@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>My Projects</title>
+    <link rel="stylesheet" href="/public/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>My Projects</h1>
+      <a class="btn" href="/admin">Add Project</a>
+    </header>
+
+    <main>
+      <% if (projects.length === 0) { %>
+        <p>No projects yet. Use the admin page to add one.</p>
+      <% } else { %>
+        <ul class="projects">
+          <% projects.forEach(p => { %>
+            <li>
+              <h2><%= p.title %></h2>
+              <p><%= p.description %></p>
+              <% if (p.tech) { %><p><strong>Tech:</strong> <%= p.tech %></p><% } %>
+              <% if (p.link) { %><p><a href="<%= p.link %>" target="_blank">Link</a></p><% } %>
+              <small>Added: <%= p.createdAt.toLocaleString() %></small>
+            </li>
+          <% }) %>
+        </ul>
+      <% } %>
+    </main>
+  </body>
+</html>

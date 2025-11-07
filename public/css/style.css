@@ -1,0 +1,9 @@
+body { font-family: Arial, sans-serif; max-width:900px; margin:30px auto; padding:0 15px; color:#222 }
+header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px }
+.btn { text-decoration:none; padding:8px 12px; border:1px solid #333; border-radius:6px }
+.form label { display:block; margin-bottom:10px }
+.form input[type="text"], .form input[type="url"], .form textarea { width:100%; padding:8px; margin-top:6px }
+.form button { padding:8px 14px; margin-top:8px }
+.error { color:#fff; background:#d9534f; padding:8px; border-radius:4px; margin-bottom:12px }
+.projects { list-style:none; padding:0; }
+.projects li { border:1px solid #ddd; padding:12px; margin-bottom:8px; border-radius:6px }
