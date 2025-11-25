@@ -1,6 +1,8 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const session = require('express-session');
 const { sequelize } = require('./models');
 const projectRoutes = require('./routes/projects');
 
@@ -14,17 +16,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/public', express.static(path.join(__dirname, '..', 'public')));
 
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'change-this-secret',
+  resave: false,
+  saveUninitialized: false,
+}));
+
 // Routes
 app.use('/', projectRoutes);
 
-// Sync DB and start
 (async () => {
   try {
-    await sequelize.sync({ alter: true }); // alter:true for local development
-    app.listen(PORT, () => {
-      console.log(`Server listening on http://localhost:${PORT}`);
-    });
+    await sequelize.sync({ alter: true });
+    app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
   } catch (err) {
-    console.error('Failed to start server:', err);
+    console.error('Startup error:', err);
   }
 })();
